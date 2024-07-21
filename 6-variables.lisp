@@ -1,0 +1,16 @@
+(defparameter *foo* 0)
+(defvar *bar* 0)
+
+(defvar *x* 10)
+(defun foo ()
+  (format t "Before assignment~18tX: ~d~%" *x*)
+  (setf *x* (+ 1 *x*))
+  (format t "After assignment~18tX: ~d~%" *x*))
+(defun bar ()
+  (foo)
+  (let ((*x* 20)) (foo))
+  (foo))
+
+(foo)
+(let ((*x* 20)) (foo))
+(bar)
